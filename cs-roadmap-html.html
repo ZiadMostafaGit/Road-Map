@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Learning Roadmap</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9fafb;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+        }
+        h1 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .description {
+            color: #4b5563;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .category {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .category-header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .category-title-container {
+            display: flex;
+            align-items: center;
+        }
+        .category-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .category-meta {
+            font-size: 0.875rem;
+        }
+        .category-arrow {
+            margin-left: 8px;
+        }
+        .category-content {
+            padding: 16px;
+            background-color: white;
+            display: none;
+        }
+        .category-content.active {
+            display: block;
+        }
+        .item {
+            margin-bottom: 16px;
+            padding: 12px;
+            border-radius: 4px;
+            background-color: #f9fafb;
+        }
+        .item:last-child {
+            margin-bottom: 0;
+        }
+        .item-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+        .item-description {
+            color: #4b5563;
+            font-size: 0.875rem;
+            margin-top: 4px;
+        }
+        .tips {
+            margin-top: 2rem;
+            padding: 16px;
+            background-color: #f3f4f6;
+            border-radius: 8px;
+        }
+        .tips-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .tips-list {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+        .tips-list li {
+            margin-bottom: 4px;
+            list-style-type: none;
+        }
+        .tips-list li:before {
+            content: "• ";
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Computer Science Learning Roadmap</h1>
+        <p class="description">A progression from beginner to expert level topics in Computer Science</p>
+        
+        <div id="roadmap-categories">
+            <!-- Categories will be populated by JavaScript -->
+        </div>
+        
+        <div class="tips">
+            <h3 class="tips-title">Tips for Your Learning Journey:</h3>
+            <ul class="tips-list">
+                <li>Focus on mastering one level before moving to the next</li>
+                <li>Apply concepts with practical projects as you learn</li>
+                <li>Consider studying related topics in each level together</li>
+                <li>Revisit fundamentals when tackling advanced projects</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Data for the roadmap
+        const roadmapData = [
+            {
+                level: "Beginner",
+                color: "#4ade80", // Green
+                items: [
+                    { title: "Finish DSA Course", description: "Complete the structured Data Structures & Algorithms course" },
+                    { title: "Problem Solving Techniques", description: "Follow YouTube tutorials on solving mechanisms and techniques" },
+                    { title: "Study Database Fundamentals", description: "Learn database basics for ITI preparation" },
+                    { title: "HTTP: The Definitive Guide", description: "Read and understand the book on HTTP protocols" },
+                ]
+            },
+            {
+                level: "Intermediate",
+                color: "#60a5fa", // Blue
+                items: [
+                    { title: "Understand API Architectures", description: "Learn about different API design patterns and implementations" },
+                    { title: "REST API Project", description: "Build a project implementing REST API concepts" },
+                    { title: "WebSocket Application", description: "Create an app using WebSocket protocol" },
+                    { title: "Study IQ Book", description: "Complete IQ preparation for ITI" },
+                    { title: "HTTP/2 Implementation", description: "Build an application that uses HTTP/2 protocol" },
+                ]
+            },
+            {
+                level: "Advanced",
+                color: "#f97316", // Orange
+                items: [
+                    { title: "Learn Zig Language", description: "Study the Zig programming language fundamentals" },
+                    { title: "Music Server with Zig", description: "Create a collaborative music server where users can upload and play music together" },
+                    { title: "P2P File Sharing Program", description: "Develop a peer-to-peer application for file sharing" },
+                    { title: "Transit Finder Application", description: "Build an app to find best transit routes when no direct flights exist" },
+                    { title: "GraphQL API Implementation", description: "Create an application using GraphQL API" },
+                    { title: "gRPC API Implementation", description: "Build a service using gRPC API" },
+                ]
+            },
+            {
+                level: "Expert",
+                color: "#f43f5e", // Red
+                items: [
+                    { title: "System Design Studies", description: "Learn advanced system design principles" },
+                    { title: "Build a Load Balancer", description: "Implement a functional load balancer" },
+                    { title: "Create a Rate Limiter", description: "Design and build a rate limiting service" },
+                    { title: "Develop a Cache Server", description: "Implement a caching server from scratch" },
+                    { title: "Build a Reverse Proxy", description: "Create a working reverse proxy implementation" },
+                    { title: "WebRTC Application", description: "Develop an application using WebRTC protocol for real-time communication" },
+                ]
+            }
+        ];
+
+        // Function to create the roadmap
+        function createRoadmap() {
+            const categoriesContainer = document.getElementById('roadmap-categories');
+            
+            roadmapData.forEach((category, index) => {
+                // Create category container
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+                
+                // Create category header
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'category-header';
+                headerDiv.style.backgroundColor = category.color + '30';
+                
+                // Create left side with color and title
+                const titleContainer = document.createElement('div');
+                titleContainer.className = 'category-title-container';
+                
+                const colorIndicator = document.createElement('div');
+                colorIndicator.className = 'category-color';
+                colorIndicator.style.backgroundColor = category.color;
+                
+                const title = document.createElement('h2');
+                title.className = 'category-title';
+                title.textContent = category.level;
+                
+                titleContainer.appendChild(colorIndicator);
+                titleContainer.appendChild(title);
+                
+                // Create right side with item count and arrow
+                const metaContainer = document.createElement('div');
+                
+                const itemCount = document.createElement('span');
+                itemCount.className = 'category-meta';
+                itemCount.textContent = `${category.items.length} items`;
+                
+                const arrow = document.createElement('span');
+                arrow.className = 'category-arrow';
+                arrow.textContent = '▼';
+                
+                metaContainer.appendChild(itemCount);
+                metaContainer.appendChild(arrow);
+                
+                // Assemble header
+                headerDiv.appendChild(titleContainer);
+                headerDiv.appendChild(metaContainer);
+                
+                // Create content area
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'category-content';
+                contentDiv.id = `category-${index}`;
+                
+                // Add items to content
+                category.items.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'item';
+                    itemDiv.style.borderLeft = `4px solid ${category.color}`;
+                    
+                    const itemTitle = document.createElement('h3');
+                    itemTitle.className = 'item-title';
+                    itemTitle.textContent = item.title;
+                    
+                    const itemDesc = document.createElement('p');
+                    itemDesc.className = 'item-description';
+                    itemDesc.textContent = item.description;
+                    
+                    itemDiv.appendChild(itemTitle);
+                    itemDiv.appendChild(itemDesc);
+                    contentDiv.appendChild(itemDiv);
+                });
+                
+                // Assemble category
+                categoryDiv.appendChild(headerDiv);
+                categoryDiv.appendChild(contentDiv);
+                
+                // Add to container
+                categoriesContainer.appendChild(categoryDiv);
+                
+                // Add click handler
+                headerDiv.addEventListener('click', () => {
+                    const isActive = contentDiv.classList.contains('active');
+                    
+                    // Close all category contents
+                    document.querySelectorAll('.category-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    document.querySelectorAll('.category-arrow').forEach(arrow => {
+                        arrow.textContent = '▼';
+                    });
+                    
+                    // If this wasn't already active, open it
+                    if (!isActive) {
+                        contentDiv.classList.add('active');
+                        arrow.textContent = '▲';
+                    }
+                });
+            });
+        }
+        
+        // Initialize the roadmap when the page loads
+        document.addEventListener('DOMContentLoaded', createRoadmap);
+    </script>
+</body>
+</html>
