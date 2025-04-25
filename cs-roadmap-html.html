@@ -5,46 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Computer Science Learning Roadmap</title>
     <style>
-        * {
-            box-sizing: border-box;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9fafb;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-        body {
-            background-color: #f5f5f5;
-            padding: 20px;
+            color: #1f2937;
         }
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #f9fafb;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 24px;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1rem;
         }
         h1 {
-            font-size: 1.875rem;
-            font-weight: 700;
             text-align: center;
-            margin-bottom: 2rem;
-        }
-        .description {
-            color: #4b5563;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        .category {
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            overflow: hidden;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
+        .description {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .category {
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background-color: white;
+        }
         .category-header {
-            padding: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem;
             cursor: pointer;
         }
         .category-title-container {
@@ -52,67 +46,60 @@
             align-items: center;
         }
         .category-color {
-            width: 16px;
-            height: 16px;
+            width: 1rem;
+            height: 1rem;
             border-radius: 50%;
-            margin-right: 12px;
+            margin-right: 1rem;
         }
         .category-title {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
         .category-meta {
-            font-size: 0.875rem;
+            margin-right: 1rem;
+            color: #6b7280;
         }
         .category-arrow {
-            margin-left: 8px;
+            font-size: 1.25rem;
         }
         .category-content {
-            padding: 16px;
-            background-color: white;
             display: none;
+            padding: 1rem;
+            background-color: #f3f4f6;
         }
         .category-content.active {
             display: block;
         }
         .item {
-            margin-bottom: 16px;
-            padding: 12px;
-            border-radius: 4px;
-            background-color: #f9fafb;
-        }
-        .item:last-child {
-            margin-bottom: 0;
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            border-left: 4px solid #9ca3af;
+            background-color: white;
+            border-radius: 0.375rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
         .item-title {
-            font-size: 1.125rem;
-            font-weight: 500;
+            font-size: 1.1rem;
+            font-weight: bold;
         }
         .item-description {
+            font-size: 0.95rem;
             color: #4b5563;
-            font-size: 0.875rem;
-            margin-top: 4px;
         }
         .tips {
-            margin-top: 2rem;
-            padding: 16px;
-            background-color: #f3f4f6;
-            border-radius: 8px;
+            margin-top: 3rem;
+            background-color: #fff7ed;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #fdba74;
         }
         .tips-title {
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
         }
         .tips-list {
-            font-size: 0.875rem;
-            color: #4b5563;
-        }
-        .tips-list li {
-            margin-bottom: 4px;
-            list-style-type: none;
-        }
-        .tips-list li:before {
-            content: "• ";
+            list-style: disc;
+            margin-left: 1.5rem;
         }
     </style>
 </head>
@@ -120,11 +107,7 @@
     <div class="container">
         <h1>Computer Science Learning Roadmap</h1>
         <p class="description">A progression from beginner to expert level topics in Computer Science</p>
-        
-        <div id="roadmap-categories">
-            <!-- Categories will be populated by JavaScript -->
-        </div>
-        
+        <div id="roadmap-categories"></div>
         <div class="tips">
             <h3 class="tips-title">Tips for Your Learning Journey:</h3>
             <ul class="tips-list">
@@ -135,34 +118,39 @@
             </ul>
         </div>
     </div>
-
     <script>
-        // Data for the roadmap
         const roadmapData = [
             {
                 level: "Beginner",
-                color: "#4ade80", // Green
+                color: "#4ade80",
                 items: [
                     { title: "Finish DSA Course", description: "Complete the structured Data Structures & Algorithms course" },
                     { title: "Problem Solving Techniques", description: "Follow YouTube tutorials on solving mechanisms and techniques" },
                     { title: "Study Database Fundamentals", description: "Learn database basics for ITI preparation" },
                     { title: "HTTP: The Definitive Guide", description: "Read and understand the book on HTTP protocols" },
+                    { title: "Basic Backend CRUD Project", description: "Use Node.js or Flask to build a simple CRUD app with authentication" },
+                    { title: "Git & GitHub Basics", description: "Learn version control and how to contribute to GitHub projects" },
+                    { title: "Linux Command Line Basics", description: "Get comfortable with terminal operations and shell scripting" }
                 ]
             },
             {
                 level: "Intermediate",
-                color: "#60a5fa", // Blue
+                color: "#60a5fa",
                 items: [
                     { title: "Understand API Architectures", description: "Learn about different API design patterns and implementations" },
                     { title: "REST API Project", description: "Build a project implementing REST API concepts" },
                     { title: "WebSocket Application", description: "Create an app using WebSocket protocol" },
                     { title: "Study IQ Book", description: "Complete IQ preparation for ITI" },
                     { title: "HTTP/2 Implementation", description: "Build an application that uses HTTP/2 protocol" },
+                    { title: "Authentication with OAuth2", description: "Secure a web app using OAuth2 and JWT" },
+                    { title: "Deploy with Docker", description: "Containerize and deploy your app using Docker" },
+                    { title: "Build a Chat App", description: "Use Socket.IO or WebSockets to create a real-time chat application" },
+                    { title: "Todo App with DB Sync", description: "Sync todo tasks across multiple devices with real-time updates" }
                 ]
             },
             {
                 level: "Advanced",
-                color: "#f97316", // Orange
+                color: "#f97316",
                 items: [
                     { title: "Learn Zig Language", description: "Study the Zig programming language fundamentals" },
                     { title: "Music Server with Zig", description: "Create a collaborative music server where users can upload and play music together" },
@@ -170,11 +158,14 @@
                     { title: "Transit Finder Application", description: "Build an app to find best transit routes when no direct flights exist" },
                     { title: "GraphQL API Implementation", description: "Create an application using GraphQL API" },
                     { title: "gRPC API Implementation", description: "Build a service using gRPC API" },
+                    { title: "Build a Mini Social Network", description: "Design a scalable social media backend with timelines, follows, and notifications" },
+                    { title: "Design Distributed Job Scheduler", description: "Implement a system to manage distributed task queues" },
+                    { title: "Collaborative Code Editor", description: "Make a code editor with live collaboration using CRDT or OT" }
                 ]
             },
             {
                 level: "Expert",
-                color: "#f43f5e", // Red
+                color: "#f43f5e",
                 items: [
                     { title: "System Design Studies", description: "Learn advanced system design principles" },
                     { title: "Build a Load Balancer", description: "Implement a functional load balancer" },
@@ -182,102 +173,71 @@
                     { title: "Develop a Cache Server", description: "Implement a caching server from scratch" },
                     { title: "Build a Reverse Proxy", description: "Create a working reverse proxy implementation" },
                     { title: "WebRTC Application", description: "Develop an application using WebRTC protocol for real-time communication" },
+                    { title: "Design a Scalable Message Queue", description: "Create a distributed message broker like Kafka or RabbitMQ" },
+                    { title: "Multi-tenant SaaS Architecture", description: "Build an architecture that supports multiple clients with isolation" },
+                    { title: "Search Engine Prototype", description: "Build a simple search engine with indexing and ranking" },
+                    { title: "Streaming Video Platform", description: "Implement a basic video streaming platform with adaptive bitrate" }
                 ]
             }
         ];
 
-        // Function to create the roadmap
         function createRoadmap() {
             const categoriesContainer = document.getElementById('roadmap-categories');
-            
             roadmapData.forEach((category, index) => {
-                // Create category container
                 const categoryDiv = document.createElement('div');
                 categoryDiv.className = 'category';
-                
-                // Create category header
                 const headerDiv = document.createElement('div');
                 headerDiv.className = 'category-header';
                 headerDiv.style.backgroundColor = category.color + '30';
-                
-                // Create left side with color and title
                 const titleContainer = document.createElement('div');
                 titleContainer.className = 'category-title-container';
-                
                 const colorIndicator = document.createElement('div');
                 colorIndicator.className = 'category-color';
                 colorIndicator.style.backgroundColor = category.color;
-                
                 const title = document.createElement('h2');
                 title.className = 'category-title';
                 title.textContent = category.level;
-                
                 titleContainer.appendChild(colorIndicator);
                 titleContainer.appendChild(title);
-                
-                // Create right side with item count and arrow
                 const metaContainer = document.createElement('div');
-                
                 const itemCount = document.createElement('span');
                 itemCount.className = 'category-meta';
                 itemCount.textContent = `${category.items.length} items`;
-                
                 const arrow = document.createElement('span');
                 arrow.className = 'category-arrow';
                 arrow.textContent = '▼';
-                
                 metaContainer.appendChild(itemCount);
                 metaContainer.appendChild(arrow);
-                
-                // Assemble header
                 headerDiv.appendChild(titleContainer);
                 headerDiv.appendChild(metaContainer);
-                
-                // Create content area
                 const contentDiv = document.createElement('div');
                 contentDiv.className = 'category-content';
                 contentDiv.id = `category-${index}`;
-                
-                // Add items to content
                 category.items.forEach(item => {
                     const itemDiv = document.createElement('div');
                     itemDiv.className = 'item';
                     itemDiv.style.borderLeft = `4px solid ${category.color}`;
-                    
                     const itemTitle = document.createElement('h3');
                     itemTitle.className = 'item-title';
                     itemTitle.textContent = item.title;
-                    
                     const itemDesc = document.createElement('p');
                     itemDesc.className = 'item-description';
                     itemDesc.textContent = item.description;
-                    
                     itemDiv.appendChild(itemTitle);
                     itemDiv.appendChild(itemDesc);
                     contentDiv.appendChild(itemDiv);
                 });
-                
-                // Assemble category
                 categoryDiv.appendChild(headerDiv);
                 categoryDiv.appendChild(contentDiv);
-                
-                // Add to container
                 categoriesContainer.appendChild(categoryDiv);
-                
-                // Add click handler
                 headerDiv.addEventListener('click', () => {
                     const isActive = contentDiv.classList.contains('active');
-                    
-                    // Close all category contents
                     document.querySelectorAll('.category-content').forEach(content => {
                         content.classList.remove('active');
                     });
-                    
                     document.querySelectorAll('.category-arrow').forEach(arrow => {
                         arrow.textContent = '▼';
                     });
-                    
-                    // If this wasn't already active, open it
                     if (!isActive) {
                         contentDiv.classList.add('active');
                         arrow.textContent = '▲';
@@ -285,9 +245,8 @@
                 });
             });
         }
-        
-        // Initialize the roadmap when the page loads
         document.addEventListener('DOMContentLoaded', createRoadmap);
     </script>
 </body>
 </html>
+
