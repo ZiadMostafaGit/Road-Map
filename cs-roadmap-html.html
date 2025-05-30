@@ -3,336 +3,865 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computer Science Learning Roadmap</title>
+    <title>Advanced Computer Science Learning Roadmap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9fafb;
+        * {
             margin: 0;
             padding: 0;
-            color: #1f2937;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 1rem;
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #1a202c;
+            line-height: 1.6;
         }
-        h1 {
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem 1rem;
             text-align: center;
-            font-size: 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
         }
-        .description {
-            text-align: center;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
         }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 180px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .progress-overview {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar-container {
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
         .category {
             margin-bottom: 2rem;
-            border-radius: 0.5rem;
+            border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            background-color: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        .category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
         .category-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem;
+            padding: 1.5rem;
             cursor: pointer;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            transition: all 0.3s ease;
         }
+
+        .category-header:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+        }
+
         .category-title-container {
             display: flex;
             align-items: center;
+            gap: 1rem;
         }
-        .category-color {
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            margin-right: 1rem;
+
+        .category-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
         }
+
         .category-title {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 700;
         }
+
         .category-meta {
-            margin-right: 1rem;
-            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #64748b;
         }
+
+        .category-progress {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
         .category-arrow {
             font-size: 1.25rem;
+            transition: transform 0.3s ease;
         }
+
         .category-content {
             display: none;
-            padding: 1rem;
-            background-color: #f3f4f6;
+            padding: 1.5rem;
+            background: rgba(248, 250, 252, 0.5);
         }
+
         .category-content.active {
             display: block;
+            animation: slideDown 0.3s ease;
         }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .item {
             margin-bottom: 1rem;
-            padding: 0.75rem 1rem;
-            border-left: 4px solid #9ca3af;
-            background-color: white;
-            border-radius: 0.375rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #94a3b8;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
         }
+
+        .item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .item.completed {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border-left-color: #22c55e;
+        }
+
+        .item.in-progress {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left-color: #f59e0b;
+        }
+
+        .project-item {
+            border-left-color: #3b82f6;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        }
+
+        .ai-item {
+            border-left-color: #8b5cf6;
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+        }
+
+        .infrastructure-item {
+            border-left-color: #ef4444;
+            background: linear-gradient(135deg, #fef2f2, #fecaca);
+        }
+
+        .exam-prep-item {
+            border-left-color: #f59e0b;
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
         .item-title {
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
+
+        .item-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .tag.project { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+        .tag.ai { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+        .tag.infrastructure { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+        .tag.advanced { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+        .tag.exam { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+
         .item-description {
             font-size: 0.95rem;
-            color: #4b5563;
-        }
-         .project-item {
-            border-left: 4px solid #3b82f6; /* A different color for projects */
-            background-color: #eff6ff; /* Lighter background for projects */
-         }
-        .tips {
-            margin-top: 3rem;
-            background-color: #fff7ed;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            border: 1px solid #fdba74;
-        }
-        .tips-title {
-            font-size: 1.25rem;
+            color: #475569;
+            line-height: 1.5;
             margin-bottom: 0.75rem;
         }
-        .tips-list {
-            list-style: disc;
-            margin-left: 1.5rem;
+
+        .item-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .item-duration {
+            font-weight: 500;
+        }
+
+        .completion-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #3b82f6;
+        }
+
+        .tips {
+            margin-top: 3rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tips-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tip-card {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .tip-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .search-container {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 1rem;
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .stats-container {
+                gap: 1rem;
+            }
+            
+            .category-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-container {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="hero-section">
+        <h1 class="hero-title">Advanced CS Engineering Roadmap</h1>
+        <p class="hero-subtitle">Master the complete stack from fundamentals to AI/ML integration, distributed systems, and modern infrastructure. Designed for engineers targeting FAANG+ companies.</p>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number" id="total-items">0</div>
+                <div class="stat-label">Total Items</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="completed-items">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="in-progress-items">0</div>
+                <div class="stat-label">In Progress</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-hours">0</div>
+                <div class="stat-label">Est. Hours</div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <h1>Computer Science Learning Roadmap</h1>
-        <p class="description">A structured progression through key topics in Computer Science, including extensive practical projects, to prepare for Software Engineering roles.</p>
+        <div class="progress-overview">
+            <h2 style="margin-bottom: 1rem; font-weight: 700;">Overall Progress</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overall-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            <p id="progress-text">0% Complete - Keep going!</p>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" id="search-input" placeholder="Search topics, projects, or technologies...">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="project">Projects</button>
+            <button class="filter-btn" data-filter="ai">AI/ML</button>
+            <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
+            <button class="filter-btn" data-filter="advanced">Advanced</button>
+            <button class="filter-btn" data-filter="exam">Exam Prep</button>
+        </div>
 
         <div id="roadmap-categories"></div>
 
+        <div class="empty-state" id="empty-state">
+            <i class="fas fa-search"></i>
+            <h3>No matching topics found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+
         <div class="tips">
-            <h3 class="tips-title">Tips for Your Learning Journey:</h3>
-            <ul class="tips-list">
-                <li>Build a strong foundation in each level before moving on.</li>
-                <li>**Crucially, apply concepts by working on the suggested projects (and your own ideas!)**</li>
-                <li>Explore related concepts within a level concurrently for a holistic understanding.</li>
-                <li>Don't hesitate to revisit earlier topics if you encounter challenges with advanced material.</li>
-                <li>Focus on understanding *why* things work, not just *how* to use them.</li>
-                <li>For projects, start simple and add complexity. Document your design choices and challenges.</li>
-                <li>Practice explaining your project designs and technical decisions – this is key for interviews.</li>
-            </ul>
+            <h3 class="tips-title">Advanced Engineering Tips</h3>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-title">🎯 Focus on System Design</div>
+                    <p>Practice designing systems at scale. Start with simple services and gradually tackle complex distributed architectures.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-title">🚀 Build Production-Ready Projects</div>
+                    <p>Include monitoring, logging, error handling, and deployment strategies in every project. Think like a senior engineer.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-title">🤖 Integrate AI/ML Early</div>
+                    <p>Modern applications increasingly use AI. Learn to integrate ML models, vector databases, and AI APIs in your projects.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-title">📊 Master Observability</div>
+                    <p>Learn metrics, logging, tracing, and monitoring. Use tools like Prometheus, Grafana, and distributed tracing systems.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-title">🔄 Practice DevOps</div>
+                    <p>Infrastructure as Code, CI/CD pipelines, containerization, and cloud platforms are essential modern skills.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-title">🌐 Think Distributed</div>
+                    <p>Modern systems are distributed by default. Learn about consistency models, consensus algorithms, and failure handling.</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        const roadmapData = [
+       const roadmapData = [
             {
-                level: "Level 1: Fundamentals & Basic Projects",
-                color: "#4ade80", // Green
+                level: "Level 1: Fundamentals & Core Programming",
+                icon: "🎯",
+                color: "#22c55e",
                 items: [
-                    { title: "Introduction to Programming", description: "Learn the basics of programming: variables, data types, control structures (loops, conditionals), functions. Choose a language like Python, JavaScript, or Java." },
-                    { title: "Data Structures & Algorithms (Basics)", description: "Study fundamental data structures (arrays, linked lists, stacks, queues, trees) and basic algorithms (sorting, searching). Understand time and space complexity (Big O notation)." },
-                    { title: "Problem Solving Techniques", description: "Develop logical thinking and systematic approaches to solving programming problems. Practice on platforms like LeetCode (easy level), HackerRank, or Codeforces." },
-                    { title: "Basic Command Line & Operating System Interaction", description: "Get comfortable navigating file systems, running commands, and understanding basic OS concepts." },
-                    { title: "Version Control (Git & GitHub)", description: "Learn how to use Git for tracking changes and collaborating on projects using platforms like GitHub." },
-                    { title: "Introduction to Databases", description: "Understand relational database concepts (tables, SQL queries, relationships) and practice with a system like SQLite or MySQL." },
-                    { title: "Basic Networking Concepts", description: "Learn the basics of how the internet works, including IP addresses, domains, and the client-server model (HTTP basics)." },
-                    { title: "Study Database Fundamentals for ITI preparation", description: "Learn database basics specifically for ITI preparation.", isExamPrep: true },
-                    { title: "Study IQ Book for ITI", description: "Complete IQ preparation for ITI.", isExamPrep: true },
-                    { title: "Study English for ITI Exam", description: "Solve English questions to prepare for the ITI exam.", isExamPrep: true },
-                    { title: "Project: Command Line To-Do List", description: "Build a simple application that allows users to add, list, and mark tasks as complete using the command line and potentially a local file or SQLite database.", isProject: true },
-                    { title: "Project: Simple Web Page with Forms", description: "Create a basic static HTML page with forms that capture user input (no backend needed yet, just frontend structure).", isProject: true },
-                    { title: "Project: Basic Data Analysis Script", description: "Write a script (e.g., in Python) to read data from a file (like CSV or JSON), perform simple calculations (average, count), and output results.", isProject: true },
-                    { title: "Project: Implement Basic Data Structures", description: "Write code to implement basic data structures like a Stack, Queue, or Linked List from scratch.", isProject: true },
-                    { title: "Project: Simple Calculator Program", description: "Build a command-line calculator that can perform basic arithmetic operations.", isProject: true }
+                    { title: "Programming Fundamentals", description: "Master variables, data types, control structures, functions, and basic OOP concepts. Choose Python, Java, or Go as a primary backend language.", tags: [], duration: "40 hours", category: "fundamental" },
+                    { title: "Data Structures & Algorithms (Basic)", description: "Arrays, linked lists, stacks, queues, trees, hash tables, and basic algorithms (sorting, searching). Focus on Big O notation and algorithmic thinking.", tags: [], duration: "60 hours", category: "fundamental" },
+                    { title: "Git & Version Control", description: "Master Git workflows, branching strategies (Gitflow/Trunk-based), pull requests, and collaborative development practices.", tags: [], duration: "20 hours", category: "fundamental" },
+                    { title: "Command Line & Shell Scripting", description: "Become proficient with terminal commands (Linux/macOS), shell scripting (Bash), and basic system administration tasks.", tags: [], duration: "20 hours", category: "fundamental" },
+                    { title: "Database Fundamentals (SQL)", description: "SQL basics (CRUD, joins, aggregation), relational database design, normalization, and basic queries with PostgreSQL or MySQL.", tags: [], duration: "30 hours", category: "fundamental" },
+                    { title: "Networking Basics for Developers", description: "Understand TCP/IP, HTTP/HTTPS protocols, DNS, basic client-server model, and how data flows on the internet.", tags: [], duration: "20 hours", category: "fundamental" },
+                    { title: "Study Database Fundamentals for ITI preparation", description: "Learn database basics specifically for ITI preparation.", tags: ["exam"], duration: "20 hours", category: "exam" },
+                    { title: "Study IQ Book for ITI", description: "Complete IQ preparation for ITI.", tags: ["exam"], duration: "25 hours", category: "exam" },
+                    { title: "Study English for ITI Exam", description: "Solve English questions to prepare for the ITI exam.", tags: ["exam"], duration: "20 hours", category: "exam" },
+                    { title: "Project: CLI Task Manager", description: "Build a command-line task management application with file persistence (e.g., JSON or CSV) and basic CRUD operations.", tags: ["project"], duration: "25 hours", category: "project" },
+                    { title: "Project: Implement Basic Data Structures", description: "Write code to implement fundamental data structures like a Stack, Queue, or Linked List from scratch in your chosen language.", tags: ["project"], duration: "35 hours", category: "project" },
+                    { title: "Project: Simple Calculator Program", description: "Build a command-line calculator that can perform basic arithmetic operations, focusing on input parsing and logic.", tags: ["project"], duration: "15 hours", category: "project" },
+                    { title: "Project: Basic Web Scraper", description: "Write a script to scrape data from a simple website. Understand HTML structure and how to extract information.", tags: ["project"], duration: "20 hours", category: "project"},
+                    { title: "Project: Simple File Sorter/Organizer", description: "Create a script that organizes files in a directory based on their type or other criteria into subfolders.", tags: ["project"], duration: "20 hours", category: "project" }
                 ]
             },
             {
-                level: "Level 2: Core CS, Application Development & Intermediate Projects",
-                color: "#60a5fa", // Blue
+                level: "Level 2: Backend Development & API Design",
+                icon: "🌐",
+                color: "#3b82f6",
                 items: [
-                    { title: "Data Structures & Algorithms (Intermediate)", description: "Explore more advanced data structures (hash tables, heaps, graphs) and algorithms (graph traversal, dynamic programming, greedy algorithms). Practice intermediate LeetCode problems." },
-                    { title: "Object-Oriented Programming (OOP)", description: "Master OOP principles: classes, objects, inheritance, polymorphism, encapsulation, abstraction. Apply these in your projects." },
-                    { title: "Database Systems (Intermediate)", description: "Deepen knowledge in database design, normalization, indexing, transactions, and explore NoSQL database concepts (e.g., MongoDB, Redis)." },
-                    { title: "Operating Systems (Basics)", description: "Understand core OS concepts: processes, threads, memory management, file systems, concurrency issues." },
-                    { title: "Computer Architecture (Basics)", description: "Learn the fundamental components of a computer system: CPU, memory hierarchy, I/O." },
-                    { title: "Networking Protocols (HTTP, TCP/IP Deep Dive)", description: "Gain a deeper understanding of key networking protocols. Learn about RESTful API design principles. Read and understand concepts from 'HTTP: The Definitive Guide'." },
-                    { title: "Web Development (Full Stack Basics)", description: "Build a basic full-stack application using a chosen framework (e.g., Node.js/Express, Python/Flask/Django, Ruby on Rails). Understand the request/response cycle." },
-                    { title: "Understand API Architectures", description: "Learn about different API design patterns and implementations (REST, RPC).", isLearningTopic: true },
-                    { title: "Authentication & Authorization", description: "Implement user authentication (e.g., sessions, tokens like JWT) and authorization mechanisms in your web projects. Learn about OAuth2.", isLearningTopic: true },
-                    { title: "Introduction to Containerization (Docker)", description: "Learn how to package and deploy simple applications using Docker." },
-                    { title: "Project: Basic Backend CRUD API", description: "Build a backend API (using your chosen framework) that allows creating, reading, updating, and deleting resources, interacting with a relational database.", isProject: true },
-                    { title: "Project: Simple Blog or Forum", description: "Create a web application where users can create posts, view others' posts, and potentially comment. Implement user accounts and basic moderation.", isProject: true },
-                    { title: "Project: Implement a Simple Cache", description: "Write a program or module that acts as a basic in-memory cache (e.g., using a hash map with a size limit).", isProject: true },
-                    { title: "Project: REST API Project", description: "Build a project specifically implementing REST API concepts.", isProject: true },
-                    { title: "Project: WebSocket Application", description: "Create an app using WebSocket protocol (e.g., a simple real-time dashboard).", isProject: true },
-                    { title: "Project: HTTP/2 Implementation Example", description: "Build a small application or client demonstrating the use of HTTP/2.", isProject: true },
-                    { title: "Project: Authentication with OAuth2 Integration", description: "Secure a web app by integrating with an OAuth2 provider (like Google or GitHub).", isProject: true },
-                    { title: "Project: Deploy a Web App with Docker", description: "Containerize one of your web applications and deploy it using Docker.", isProject: true },
-                    { title: "Project: Build a Chat App (Real-time)", description: "Use Socket.IO or WebSockets to create a real-time chat application.", isProject: true },
-                    { title: "Project: Todo App with DB Sync", description: "Build a todo application where tasks sync across multiple clients/devices with real-time updates.", isProject: true },
-                    { title: "Project: Simple Web Server", description: "Implement a basic HTTP server from scratch that can serve static files.", isProject: true }
+                    { title: "Advanced Data Structures & Algorithms", description: "Heaps, graphs (traversals, shortest path), dynamic programming, greedy algorithms. Practice medium LeetCode/HackerRank problems.", tags: ["advanced"], duration: "80 hours", category: "advanced" },
+                    { title: "Object-Oriented Design & Principles", description: "Master SOLID principles, common design patterns (Singleton, Factory, Observer, Decorator, Strategy), and clean code practices.", tags: ["advanced", "design"], duration: "45 hours", category: "advanced" },
+                    { title: "Backend Framework Proficiency", description: "Deep dive into one backend framework (e.g., Express.js for Node.js, Spring Boot for Java, Django/Flask for Python, Gin for Go). Understand its core concepts, middleware, and request lifecycle.", tags: [], duration: "60 hours", category: "fundamental" },
+                    { title: "RESTful API Design & Development", description: "Design and implement robust REST APIs with proper HTTP methods, status codes, versioning, pagination, and API documentation (e.g., OpenAPI/Swagger).", tags: ["api"], duration: "40 hours", category: "fundamental" },
+                    { title: "Database Design & Advanced SQL", description: "Advanced SQL (window functions, CTEs), database normalization (up to BCNF), indexing strategies, query optimization, and an introduction to NoSQL concepts (e.g., document, key-value stores).", tags: ["database"], duration: "50 hours", category: "fundamental" },
+                    { title: "Authentication & Authorization Mechanisms", description: "Implement JWT, OAuth 2.0 (understanding different flows), session management, password hashing techniques, and role-based access control (RBAC) systems.", tags: ["security"], duration: "40 hours", category: "fundamental" },
+                    { title: "Testing Strategies for Backend", description: "Unit testing, integration testing, TDD/BDD practices. Learn to use testing frameworks relevant to your chosen language/framework (e.g., Jest, JUnit, PyTest).", tags: ["testing"], duration: "35 hours", category: "fundamental" },
+                    { title: "Docker & Basic Containerization", description: "Create Dockerfiles, build Docker images, run containers, manage them with docker-compose, and understand basic container orchestration concepts.", tags: ["infrastructure"], duration: "30 hours", category: "infrastructure" },
+                    { title: "Project: Robust Backend CRUD API", description: "Build a backend API for a resource (e.g., products, users) with full CRUD operations, input validation, error handling, and interaction with a relational database.", tags: ["project", "api"], duration: "45 hours", category: "project" },
+                    { title: "Project: User Authentication Service", description: "Implement a service for user registration, login, password management (hashed storage, reset functionality), and token-based authentication (JWT).", tags: ["project", "security", "api"], duration: "50 hours", category: "project" },
+                    { title: "Project: Simple Blog or Forum Backend", description: "Create the backend for a web application where users can create posts, view others' posts, and comment. Implement user accounts and basic content management.", tags: ["project", "api"], duration: "55 hours", category: "project" },
+                    { title: "Project: URL Shortener Service", description: "Develop a service that takes a long URL, generates a unique short alias, and redirects users. Involves database interaction and potentially some hashing/encoding logic.", tags: ["project", "api"], duration: "40 hours", category: "project" },
+                    { title: "Project: Deploy a Web App with Docker", description: "Containerize one of your backend applications (e.g., the CRUD API) and deploy it using Docker. Write a docker-compose file for easy setup.", tags: ["project", "infrastructure"], duration: "30 hours", category: "project" }
                 ]
             },
             {
-                level: "Level 3: Advanced Concepts, Distributed Systems & Complex Projects",
-                color: "#f97316", // Orange
+                level: "Level 3: Advanced Backend Engineering & System Design Principles",
+                icon: "⚙️",
+                color: "#8b5cf6", // Kept color from original AI/ML level for UI consistency
                 items: [
-                    { title: "Algorithms (Advanced)", description: "Study complex algorithms, algorithm design techniques, and computational complexity theory. Tackle medium/hard LeetCode problems." },
-                    { title: "Concurrency and Parallelism", description: "Understand how to write programs that perform multiple tasks simultaneously using threads, processes, and asynchronous programming. Learn about common concurrency issues (deadlocks, race conditions)." },
-                    { title: "Distributed Systems (Basics)", description: "Learn the challenges and fundamental concepts of building systems that run on multiple machines: CAP theorem, consistency models, basic distributed coordination." },
-                    { title: "Advanced Database Topics", description: "Explore database scaling strategies (sharding, replication), distributed databases, and data warehousing concepts. Understand trade-offs between SQL and NoSQL for different use cases." },
-                    { title: "Advanced Networking", description: "Dive into topics like WebSockets, HTTP/2, gRPC, and peer-to-peer (P2P) networking." },
-                    { title: "System Design Fundamentals", description: "Start learning how to design scalable, reliable, and maintainable software systems. Practice with common design problems (e.g., designing a URL shortener, Twitter feed). Focus on components like load balancers, databases, caches, message queues.", isLearningTopic: true },
-                    { title: "Introduction to Cloud Computing", description: "Understand the basics of cloud platforms (AWS, Azure, GCP) and common services (compute, storage, databases, serverless). Deploy your projects to the cloud." },
-                    { title: "Security Fundamentals", description: "Learn common web vulnerabilities (OWASP top 10), secure coding practices, basic cryptography concepts, and secure authentication flows." },
-                    { title: "Learn about concurrency and threads (e.g., in Rust)", description: "Deepen your understanding of concurrency models and thread management in a language like Rust.", isLearningTopic: true },
-                    { title: "Project: Learn about NoSQL DB like MongoDB with SQL DB", description: "Build a project that utilizes both a NoSQL DB (like MongoDB) and a SQL DB (like MySQL), potentially running them on separate instances and connecting them.", isProject: true },
-                    { title: "Project: Real-time Collaborative Whiteboard/Editor", description: "Build an application where multiple users can interact in real-time, requiring careful handling of state synchronization (e.g., using WebSockets and potentially CRDTs/OT).", isProject: true },
-                    { title: "Project: Simple Key-Value Store", description: "Implement a basic distributed key-value store, considering how to handle data distribution and replication across multiple nodes.", isProject: true },
-                    { title: "Project: Build a Basic Search Engine Indexer", description: "Create a program that can crawl a small set of documents, build an inverted index, and perform simple keyword searches.", isProject: true },
-                    { title: "Project: Implement a Rate Limiter", description: "Build a service or middleware component that enforces rate limits on API requests.", isProject: true },
-                    { title: "Project: P2P File Sharing Program", description: "Develop a peer-to-peer application for file sharing.", isProject: true },
-                    { title: "Project: Transit Finder Application", description: "Build an app to find best transit routes when no direct flights exist (requires graph algorithms and potentially external data).", isProject: true },
-                    { title: "Project: GraphQL API Implementation", description: "Create an application using GraphQL API.", isProject: true },
-                    { title: "Project: gRPC API Implementation", description: "Build a service using gRPC API.", isProject: true },
-                    { title: "Project: Build a Mini Social Network Backend", description: "Design a scalable social media backend with timelines, follows, and notifications.", isProject: true },
-                    { title: "Project: Design Distributed Job Scheduler", description: "Implement a system to manage distributed task queues.", isProject: true },
-                    { title: "Project: Collaborative Code Editor Backend", description: "Make the backend for a code editor with live collaboration using CRDT or OT.", isProject: true },
-                    { title: "Project: Implement a Simple Shell", description: "Build a basic command-line shell that can execute commands and handle input/output redirection.", isProject: true },
-                    { title: "Project: Basic Memory Allocator", description: "Implement a simplified version of a memory allocator (like malloc/free).", isProject: true }
+                    { title: "Advanced API Technologies (GraphQL/gRPC)", description: "Learn GraphQL for flexible data querying and/or gRPC for high-performance inter-service communication. Understand their use cases and trade-offs compared to REST.", tags: ["api", "advanced"], duration: "40 hours", category: "advanced" },
+                    { title: "Message Queues & Event-Driven Architecture", description: "Implement asynchronous processing with tools like RabbitMQ, Apache Kafka, or Redis Streams. Understand pub/sub, message durability, and patterns for event-driven systems.", tags: ["infrastructure", "architecture"], duration: "45 hours", category: "infrastructure" },
+                    { title: "Caching Strategies for Performance", description: "Implement multi-level caching (client-side, CDN, application-level, database query caching) with tools like Redis or Memcached. Understand cache invalidation, consistency models, and common caching patterns (e.g., read-through, write-through).", tags: ["infrastructure", "performance"], duration: "35 hours", category: "infrastructure" },
+                    { title: "Concurrency and Parallelism in Backend Systems", description: "Understand threads, processes, async/await, event loops, and patterns for writing concurrent and parallel backend applications. Explore language-specific features (e.g., Goroutines, Java Concurrency Utilities, Python asyncio).", tags: ["advanced", "performance"], duration: "40 hours", category: "advanced" },
+                    { title: "Software Architecture Patterns", description: "Explore and compare common architectural patterns: Monolith, Microservices, Service-Oriented Architecture (SOA), Event-Driven Architecture, Layered Architecture. Understand their pros, cons, and use cases.", tags: ["architecture", "design", "advanced"], duration: "45 hours", category: "advanced" },
+                    { title: "Introduction to System Monitoring & Observability", description: "Learn the pillars of observability: logging, metrics, and tracing. Understand their importance in diagnosing and maintaining backend systems. Introduction to tools like Prometheus, Grafana, or the ELK stack.", tags: ["infrastructure", "monitoring"], duration: "35 hours", category: "infrastructure" },
+                    { title: "Advanced API Security Practices", description: "Deep dive into OAuth 2.0 and OpenID Connect (OIDC) flows, secure API key management, rate limiting, input validation best practices, and common web vulnerabilities (OWASP Top 10 for APIs).", tags: ["security", "api", "advanced"], duration: "40 hours", category: "advanced" },
+                    { title: "Project: Real-time Chat Application Backend", description: "Use WebSockets or a similar technology (like Socket.IO) to create the backend for a real-time chat application. Handle message broadcasting, user presence, and potentially chat rooms.", tags: ["project", "api", "infrastructure"], duration: "60 hours", category: "project" },
+                    { title: "Project: Microservice with Inter-service Communication", description: "Build two or more microservices that communicate via REST, gRPC, or a message queue. Implement a simple business workflow that spans these services, focusing on service discovery and resilience.", tags: ["project", "architecture", "infrastructure"], duration: "65 hours", category: "project" },
+                    { title: "Project: Implement a Rate Limiter for an API", description: "Build a middleware or a separate service to enforce rate limits on API requests based on IP address or API key using algorithms like token bucket or leaky bucket.", tags: ["project", "infrastructure", "api"], duration: "50 hours", category: "project" },
+                    { title: "Project: Job Queue System with Workers", description: "Develop a system where tasks can be queued (e.g., using Redis or RabbitMQ) and processed asynchronously by one or more worker services. Implement for tasks like sending emails or generating reports.", tags: ["project", "infrastructure", "architecture"], duration: "55 hours", category: "project" }
                 ]
             },
             {
-                level: "Level 4: Specialization, Expert Systems & Advanced Projects",
-                color: "#f43f5e", // Red
+                level: "Level 4: Distributed Systems & Scalable Infrastructure",
+                icon: "🏗️",
+                color: "#ef4444",
                 items: [
-                    { title: "System Design (Advanced)", description: "Master advanced system design patterns, trade-offs, and in-depth case studies of large-scale systems (e.g., designing Facebook's Newsfeed, Twitter Search, a distributed file system). Focus on scalability, reliability, and maintainability.", isLearningTopic: true },
-                    { title: "Building Scalable Infrastructure Components", description: "Deep dive into implementing core distributed system components like sophisticated Load Balancers, distributed Caching systems (like Memcached or Redis from scratch), and robust Message Queues.", isLearningTopic: true },
-                    { title: "Designing and Implementing Complex Distributed Systems", description: "Tackle building more complex distributed systems, potentially implementing consensus algorithms (like Raft) or exploring distributed transaction models.", isLearningTopic: true },
-                    { title: "Advanced Cloud Computing & DevOps", description: "Explore infrastructure as code (IaC) with tools like Terraform/CloudFormation, advanced CI/CD pipelines, monitoring and logging strategies, and designing for resilience in the cloud." },
-                    { title: "Performance Optimization & Tuning", description: "Learn advanced techniques for profiling, benchmarking, and optimizing code and system performance across the stack." },
-                     { title: "Specialized Areas (Choose 1-2)", description: "Deep dive into areas like Machine Learning Engineering, Cybersecurity (Advanced), Compiler Design, Operating System Internals, Networking (Advanced Protocols), or Blockchain based on your interests and career goals." },
-                    { title: "Project: Build a Load Balancer", description: "Implement a functional load balancer (e.g., a simple round-robin or least-connection load balancer).", isProject: true },
-                    { title: "Project: Create a Rate Limiter Service", description: "Design and build a production-ready rate limiting service.", isProject: true },
-                    { title: "Project: Develop a Cache Server", description: "Implement a caching server from scratch (e.g., a distributed key-value cache).", isProject: true },
-                    { title: "Project: Build a Reverse Proxy", description: "Create a working reverse proxy implementation.", isProject: true },
-                    { title: "Project: WebRTC Application", description: "Develop a complex application using WebRTC protocol for real-time communication (e.g., video conferencing, screen sharing).", isProject: true },
-                    { title: "Project: Design a Scalable Message Queue", description: "Create a distributed message broker like Kafka or RabbitMQ from scratch (simplified).", isProject: true },
-                    { title: "Project: Multi-tenant SaaS Architecture Implementation", description: "Build a complex application demonstrating a multi-tenant architecture that supports multiple clients with isolation.", isProject: true },
-                    { title: "Project: Search Engine Prototype (Advanced)", description: "Build a more sophisticated search engine with features like ranking, relevance, and handling larger datasets.", isProject: true },
-                    { title: "Project: Streaming Video Platform (Basic)", description: "Implement a basic video streaming platform with adaptive bitrate and handling video chunks.", isProject: true },
-                     { title: "Project: Music Server (Collaborative)", description: "Create a collaborative music server where users can upload and play music together (focus on real-time aspects and data synchronization).", isProject: true },
-                    { title: "Project: Implement a Simplified Database", description: "Build a basic database system that supports querying and data storage.", isProject: true },
-                    { title: "Project: Build a Simple Compiler/Interpreter", description: "Create a program that can parse and execute a simple programming language.", isProject: true },
-                     { title: "Contributing to Open Source (Significant Contribution)", description: "Make a substantial contribution to a relevant open-source project, demonstrating understanding of a large codebase and collaboration.", isProject: true }
+                    { title: "Distributed Systems Fundamentals", description: "CAP theorem, consistency models (strong, eventual), consensus algorithms (Raft, Paxos basics), leader election, and distributed coordination challenges.", tags: ["infrastructure", "advanced", "architecture"], duration: "70 hours", category: "infrastructure" },
+                    { title: "Microservices Architecture In-Depth", description: "Design patterns for microservices (e.g., API Gateway, BFF, Saga), service mesh (Istio/Linkerd concepts), inter-service communication patterns (synchronous, asynchronous), and strategies for decomposition.", tags: ["infrastructure", "architecture", "advanced"], duration: "60 hours", category: "infrastructure" },
+                    { title: "Kubernetes & Container Orchestration", description: "Deploy, manage, and scale applications with Kubernetes. Understand pods, services, deployments, ReplicaSets, ConfigMaps, Secrets, Ingress controllers, and basic Helm charts.", tags: ["infrastructure", "devops"], duration: "55 hours", category: "infrastructure" },
+                    { title: "Advanced Database Systems & Scalability", description: "Database sharding, replication (master-slave, master-master), distributed transactions (and their challenges, e.g., 2PC), database proxies, and consistency patterns across multiple databases. Explore NoSQL at scale.", tags: ["database", "infrastructure", "advanced"], duration: "60 hours", category: "infrastructure" },
+                    { title: "Observability & Monitoring at Scale", description: "Implement comprehensive monitoring with Prometheus & Grafana, distributed tracing (e.g., Jaeger, OpenTelemetry), centralized log aggregation (e.g., ELK Stack, Loki), and alerting strategies.", tags: ["infrastructure", "monitoring", "devops"], duration: "45 hours", category: "infrastructure" },
+                    { title: "Load Balancing & Traffic Management", description: "Implement various load balancing strategies (L4/L7), understand different algorithms, session affinity, health checks, circuit breakers, and traffic routing for high availability and resilience.", tags: ["infrastructure", "networking"], duration: "40 hours", category: "infrastructure" },
+                    { title: "Cloud Computing Deep Dive (Choose one: AWS, GCP, or Azure)", description: "Master core services for backend development (compute, storage, databases, networking, messaging, IAM). Explore serverless architectures, Infrastructure as Code (IaC with Terraform/CloudFormation), and cloud-native design patterns.", tags: ["infrastructure", "cloud", "devops"], duration: "65 hours", category: "infrastructure" },
+                    { title: "Security & DevSecOps Principles", description: "Implement security best practices in the development lifecycle, secrets management (e.g., Vault), vulnerability scanning, network security (firewalls, VPCs), and secure CI/CD pipelines.", tags: ["security", "infrastructure", "devops"], duration: "50 hours", category: "infrastructure" },
+                    { title: "Project: Build a Distributed Key-Value Store (Simplified)", description: "Implement a basic distributed key-value store, considering data partitioning (sharding), replication for fault tolerance, and a simple consistency model.", tags: ["project", "infrastructure", "advanced", "architecture"], duration: "80 hours", category: "project" },
+                    { title: "Project: Design a Scalable Social Media Backend Feature", description: "Design and partially implement a core feature of a social network (e.g., news feed generation, follower/following system, notifications) focusing on scalability and data modeling.", tags: ["project", "architecture", "advanced", "database"], duration: "85 hours", category: "project" },
+                    { title: "Project: Real-time Collaborative Document Editor Backend (Conceptual + Partial Impl.)", description: "Design the backend for a system allowing multiple users to edit a document simultaneously. Explore concepts like Operational Transformation (OT) or Conflict-free Replicated Data Types (CRDTs) and implement a simplified version using WebSockets.", tags: ["project", "infrastructure", "advanced", "architecture"], duration: "90 hours", category: "project" }
+                ]
+            },
+            {
+                level: "Level 5: Expert Backend Engineering & System Mastery",
+                icon: "🚀",
+                color: "#f59e0b",
+                items: [
+                    { title: "System Design Mastery & Interview Preparation", description: "Deep dive into designing complex, large-scale systems (e.g., social media platforms, video streaming, e-commerce, search engines). Practice with common interview scenarios and focus on trade-offs, scalability, availability, and fault tolerance.", tags: ["advanced", "architecture", "design"], duration: "80 hours", category: "advanced" },
+                    { title: "Performance Engineering & Optimization", description: "Advanced profiling techniques, performance benchmarking, memory management deep dive, system tuning, and optimizing for low latency and high throughput in backend systems.", tags: ["advanced", "performance"], duration: "65 hours", category: "advanced" },
+                    { title: "Designing Scalable & Resilient Backend Systems", description: "Focus on advanced architectural patterns for high availability, fault tolerance, and extreme scalability (e.g., cell-based architecture, sharding deep dive, chaos engineering principles, designing for data consistency at scale).", tags: ["advanced", "infrastructure", "design", "architecture"], duration: "70 hours", category: "advanced" },
+                    { title: "Advanced Cloud Architecture & Services", description: "Deep dive into advanced features of your chosen cloud provider (AWS, GCP, Azure) for building complex backend systems, including serverless at scale, advanced networking (VPCs, direct connect), managed Kubernetes services, global data distribution, and cost optimization strategies.", tags: ["infrastructure", "advanced", "cloud", "architecture"], duration: "65 hours", category: "advanced" },
+                    { title: "Advanced Networking for Backend Developers", description: "Deep understanding of TCP/IP internals, UDP, HTTP/2, HTTP/3, QUIC, WebSockets, load balancing internals, CDN mechanics, DNS intricacies, and how to design and troubleshoot high-performance, low-latency network communication for backend services.", tags: ["infrastructure", "advanced", "performance", "networking"], duration: "60 hours", category: "infrastructure" },
+                    { title: "Operating System Internals for Engineers", description: "Deep dive into kernel architecture, process scheduling algorithms, memory management (virtual memory, paging), file systems, and inter-process communication from a developer's perspective.", tags: ["advanced", "low-level"], duration: "75 hours", category: "advanced" },
+                    { title: "Contributing to a Major Open Source Backend Project", description: "Make a substantial contribution to a well-known open-source backend project (e.g., a database, web server, framework, infrastructure tool). Demonstrate understanding of a large codebase, community collaboration, and release processes.", tags: ["project", "advanced", "community"], duration: "100 hours", category: "project" },
+                    { title: "Project: Build a Production-Ready Load Balancer (Simplified)", description: "Implement a simplified but robust load balancer with health checks, various routing algorithms (e.g., round-robin, least connections), and basic metrics collection.", tags: ["project", "infrastructure", "advanced", "networking"], duration: "95 hours", category: "project" },
+                    { title: "Project: Develop a Distributed Cache Server", description: "Implement a caching server from scratch (e.g., a distributed key-value cache with eventual consistency), focusing on eviction policies, data distribution, and node communication.", tags: ["project", "infrastructure", "advanced", "performance"], duration: "100 hours", category: "project" },
+                    { title: "Project: Design and Implement a Simplified Relational Database Engine", description: "Build a basic database system that supports a subset of SQL (parsing, querying), B-tree indexing, transaction management (ACID properties at a conceptual level), and data storage.", tags: ["project", "advanced", "database", "low-level"], duration: "130 hours", category: "project" },
+                    { title: "Project: Create a Scalable Message Queue System (Simplified)", description: "Design and build a simplified distributed message broker (like Kafka or RabbitMQ) focusing on message persistence, producer/consumer logic, and topic management.", tags: ["project", "infrastructure", "advanced", "architecture"], duration: "110 hours", category: "project" }
                 ]
             }
         ];
+        // State management
+        let userProgress = {};
+        let activeFilter = "all";
+        let searchQuery = "";
+        let expandedCategory = null;
 
-        function createRoadmap() {
-            const categoriesContainer = document.getElementById('roadmap-categories');
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+            renderRoadmap();
+            setupEventListeners();
+            updateStats();
+        });
+
+        // Render the entire roadmap
+        function renderRoadmap() {
+            const container = document.getElementById('roadmap-categories');
+            container.innerHTML = '';
+            
+            let hasVisibleItems = false;
+            
             roadmapData.forEach((category, index) => {
-                const categoryDiv = document.createElement('div');
-                categoryDiv.className = 'category';
-
-                const headerDiv = document.createElement('div');
-                headerDiv.className = 'category-header';
-                // Use a lighter background color for the header
-                headerDiv.style.backgroundColor = category.color + '20'; // Added transparency
-
-                const titleContainer = document.createElement('div');
-                titleContainer.className = 'category-title-container';
-
-                const colorIndicator = document.createElement('div');
-                colorIndicator.className = 'category-color';
-                colorIndicator.style.backgroundColor = category.color;
-
-                const title = document.createElement('h2');
-                title.className = 'category-title';
-                title.textContent = category.level;
-
-                titleContainer.appendChild(colorIndicator);
-                titleContainer.appendChild(title);
-
-                const metaContainer = document.createElement('div');
-                const itemCount = document.createElement('span');
-                itemCount.className = 'category-meta';
-                itemCount.textContent = `${category.items.length} items`;
-
-                const arrow = document.createElement('span');
-                arrow.className = 'category-arrow';
-                arrow.textContent = '▼'; // Down arrow initially
-
-                metaContainer.appendChild(itemCount);
-                metaContainer.appendChild(arrow);
-
-                headerDiv.appendChild(titleContainer);
-                headerDiv.appendChild(metaContainer);
-
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'category-content';
-                contentDiv.id = `category-${index}`;
-
-                category.items.forEach(item => {
-                    const itemDiv = document.createElement('div');
-                    // Add a specific class for project items for distinct styling
-                    itemDiv.className = item.isProject ? 'item project-item' : (item.isExamPrep ? 'item exam-prep-item' : 'item'); // Added exam-prep-item class
-                    itemDiv.style.borderLeft = `4px solid ${item.isProject ? '#3b82f6' : (item.isExamPrep ? '#ffc107' : category.color)}`; // Use project color, exam prep color, or category color
-
-                    const itemTitle = document.createElement('h3');
-                    itemTitle.className = 'item-title';
-                    itemTitle.textContent = item.title;
-
-                    const itemDesc = document.createElement('p');
-                    itemDesc.className = 'item-description';
-                    itemDesc.textContent = item.description;
-
-                    itemDiv.appendChild(itemTitle);
-                    itemDiv.appendChild(itemDesc);
-                    contentDiv.appendChild(itemDiv);
+                const categoryElement = document.createElement('div');
+                categoryElement.className = 'category';
+                
+                // Filter items based on search and filter criteria
+                const filteredItems = category.items.filter(item => {
+                    const matchesSearch = searchQuery === '' || 
+                        item.title.toLowerCase().includes(searchQuery) || 
+                        item.description.toLowerCase().includes(searchQuery);
+                    
+                    const matchesFilter = activeFilter === 'all' || 
+                        (activeFilter === 'project' && item.category === 'project') ||
+                        (activeFilter === 'ai' && item.category === 'ai') ||
+                        (activeFilter === 'infrastructure' && item.category === 'infrastructure') ||
+                        (activeFilter === 'advanced' && item.tags.includes('advanced')) ||
+                        (activeFilter === 'exam' && item.category === 'exam');
+                    
+                    return matchesSearch && matchesFilter;
                 });
+                
+                if (filteredItems.length === 0) return;
+                
+                hasVisibleItems = true;
+                
+                // Calculate category progress
+                const totalItems = category.items.length;
+                const completedItems = category.items.filter(item => userProgress[item.title] === 'completed').length;
+                const progressPercent = Math.round((completedItems / totalItems) * 100);
+                
+                categoryElement.innerHTML = `
+                    <div class="category-header" data-index="${index}">
+                        <div class="category-title-container">
+                            <div class="category-icon" style="background-color: ${category.color}">
+                                ${category.icon}
+                            </div>
+                            <h2 class="category-title">${category.level}</h2>
+                        </div>
+                        <div class="category-meta">
+                            <div class="category-progress">${progressPercent}% Complete</div>
+                            <div class="category-arrow">${expandedCategory === index ? '▼' : '▶'}</div>
+                        </div>
+                    </div>
+                    <div class="category-content ${expandedCategory === index ? 'active' : ''}">
+                        ${filteredItems.map(item => renderItem(item)).join('')}
+                    </div>
+                `;
+                
+                container.appendChild(categoryElement);
+            });
+            
+            // Show/hide empty state
+            document.getElementById('empty-state').style.display = hasVisibleItems ? 'none' : 'block';
+        }
 
-                categoryDiv.appendChild(headerDiv);
-                categoryDiv.appendChild(contentDiv);
-                categoriesContainer.appendChild(categoryDiv);
+        // Render an individual item
+        function renderItem(item) {
+            const progress = userProgress[item.title] || 'not-started';
+            const statusClass = progress === 'completed' ? 'completed' : progress === 'in-progress' ? 'in-progress' : '';
+            const categoryClass = item.category === 'project' ? 'project-item' : 
+                                 item.category === 'ai' ? 'ai-item' : 
+                                 item.category === 'infrastructure' ? 'infrastructure-item' : 
+                                 item.category === 'exam' ? 'exam-prep-item' : '';
+            
+            return `
+                <div class="item ${statusClass} ${categoryClass}" data-title="${item.title}">
+                    <div class="item-header">
+                        <div>
+                            <h3 class="item-title">${item.title}</h3>
+                            ${item.tags.length > 0 ? `
+                                <div class="item-tags">
+                                    ${item.tags.map(tag => `<span class="tag ${tag}">${tag.charAt(0).toUpperCase() + tag.slice(1)}</span>`).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                        <input type="checkbox" class="completion-checkbox" 
+                            ${progress === 'completed' ? 'checked' : ''}
+                            data-status="${progress === 'completed' ? 'completed' : 'in-progress'}">
+                    </div>
+                    <p class="item-description">${item.description}</p>
+                    <div class="item-details">
+                        <span class="item-duration">⏱️ ${item.duration}</span>
+                        <span>${progress === 'completed' ? '✅ Completed' : progress === 'in-progress' ? '🔄 In Progress' : '📝 Not Started'}</span>
+                    </div>
+                </div>
+            `;
+        }
 
-                // Add click event listener to the header to toggle content
-                headerDiv.addEventListener('click', () => {
-                    const isActive = contentDiv.classList.contains('active');
-
-                    // Close all other open categories
-                    document.querySelectorAll('.category-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-                     document.querySelectorAll('.category-arrow').forEach(arrow => {
-                        arrow.textContent = '▼'; // Reset all arrows to down
-                    });
-
-
-                    // Toggle the clicked category
-                    if (!isActive) {
-                        contentDiv.classList.add('active');
-                        arrow.textContent = '▲'; // Change arrow to up when active
+        // Set up event listeners
+        function setupEventListeners() {
+            // Category headers for expanding/collapsing
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.category-header')) {
+                    const header = e.target.closest('.category-header');
+                    const index = parseInt(header.dataset.index);
+                    
+                    if (expandedCategory === index) {
+                        expandedCategory = null;
+                    } else {
+                        expandedCategory = index;
                     }
+                    
+                    renderRoadmap();
+                }
+                
+                // Checkbox toggles
+                if (e.target.classList.contains('completion-checkbox')) {
+                    const itemElement = e.target.closest('.item');
+                    const itemTitle = itemElement.dataset.title;
+                    const currentStatus = e.target.dataset.status;
+                    
+                    let newStatus;
+                    if (currentStatus === 'completed') {
+                        newStatus = 'not-started';
+                        e.target.dataset.status = 'in-progress';
+                        e.target.checked = false;
+                    } else if (currentStatus === 'in-progress') {
+                        newStatus = 'completed';
+                        e.target.dataset.status = 'completed';
+                        e.target.checked = true;
+                    } else {
+                        newStatus = 'in-progress';
+                        e.target.dataset.status = 'in-progress';
+                    }
+                    
+                    userProgress[itemTitle] = newStatus;
+                    saveProgress();
+                    updateStats();
+                    
+                    // Re-render the category to update progress percentage
+                    const categoryElement = itemElement.closest('.category');
+                    if (categoryElement) {
+                        const header = categoryElement.querySelector('.category-header');
+                        const index = parseInt(header.dataset.index);
+                        expandedCategory = index;
+                        renderRoadmap();
+                    }
+                }
+            });
+            
+            // Search input
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                renderRoadmap();
+            });
+            
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    activeFilter = button.dataset.filter;
+                    renderRoadmap();
                 });
             });
         }
 
-        // Run the createRoadmap function when the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', createRoadmap);
-    </script>
-     <style>
-        /* Added styling for exam prep items */
-        .exam-prep-item {
-            border-left: 4px solid #ffc107; /* Yellow color for exam prep */
-            background-color: #fff9c4; /* Lighter yellow background */
+        // Update stats and progress bar
+        function updateStats() {
+            let totalItems = 0;
+            let completedItems = 0;
+            let inProgressItems = 0;
+            let totalHours = 0;
+            
+            roadmapData.forEach(category => {
+                category.items.forEach(item => {
+                    totalItems++;
+                    const hours = parseInt(item.duration);
+                    if (!isNaN(hours)) totalHours += hours;
+                    
+                    const progress = userProgress[item.title];
+                    if (progress === 'completed') completedItems++;
+                    if (progress === 'in-progress') inProgressItems++;
+                });
+            });
+            
+            const progressPercent = Math.round((completedItems / totalItems) * 100);
+            
+            document.getElementById('total-items').textContent = totalItems;
+            document.getElementById('completed-items').textContent = completedItems;
+            document.getElementById('in-progress-items').textContent = inProgressItems;
+            document.getElementById('total-hours').textContent = totalHours;
+            document.getElementById('overall-progress').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').textContent = 
+                `${progressPercent}% Complete - ${progressPercent < 30 ? 'Keep going!' : 
+                 progressPercent < 70 ? 'Great progress!' : 'Almost there!'}`;
         }
-    </style>
+
+        // Save progress to localStorage
+        function saveProgress() {
+            localStorage.setItem('cs-roadmap-progress', JSON.stringify(userProgress));
+        }
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('cs-roadmap-progress');
+            userProgress = savedProgress ? JSON.parse(savedProgress) : {};
+        }
+    </script>
 </body>
 </html>
-
